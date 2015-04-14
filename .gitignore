@@ -24,4 +24,24 @@ build/Release
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+
 node_modules
+
+
+
+
+# Android
+app/platforms/android/assets/www
+app/platforms/android/bin/
+app/platforms/android/gen/
+app/platforms/android/res/xml/config.xml
+
+# # iOS
+app/platforms/ios/build/
+app/platforms/ios/CordovaLib/build/
+app/platforms/ios/www
+app/platforms/ios/MyPace/config.xml
+app/platforms/ios/.staging
+#
+# # Emulator logs
+app/platforms/ios/cordova/console.log
