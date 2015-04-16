@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>891E5DEE-7A22-474F-9DFB-585063B376BA</string>
 	<key>IDESourceControlProjectName</key>
-	<string>HighVolume</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>43A108A9EB874702129B9770D0DF749303111DF9</key>
 		<string>github.com:reebayroo/highvol.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>app/platforms/ios/HighVolume.xcodeproj</string>
+	<string>app/platforms/ios/HighVolume.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>43A108A9EB874702129B9770D0DF749303111DF9</key>
