@@ -1,1 +1,37 @@
 /* Empty. Add your own CSS if you like */
+.button-set {
+  padding: 5px;
+  width: 100%;
+  border: 1px solid #b2b2b2;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 1;
+  min-height: 30px;
+}
+input.input-set {
+  border: 1px solid #b2b2b2;
+  float:left;
+  clear:none;
+  margin: 0px 20px;
+  padding: 13px 0px ;
+  width: 50px;
+  color:black;
+  height: 100%;
+  text-align: center;
+  font-size: 1.2em;
+}
+button.tiny-button-set{
+  padding: 0px 10px;
+  border: 1px solid #b2b2b2;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 0.5em;
+  float:left;
+  clear:none;
+  margin-right: 0px;
+  color:black !important;
+}
+label.label-set{
+    font-weight:bold;
+}    

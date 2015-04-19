@@ -23,22 +23,22 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  .state('app', {
-    url: "/app",
-    abstract: true,
-    templateUrl: "templates/menu.html",
-    controller: 'AppCtrl'
-  })
-  .state('app.newWorkout', {
-    url: "/new-workout",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/new-workout.html",
-        controller: "WorkoutCtrl"
+    .state('app', {
+      url: "/app",
+      abstract: true,
+      templateUrl: "templates/menu.html",
+      controller: 'AppCtrl'
+    })
+    .state('app.newWorkout', {
+      url: "/new-workout",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/new-workout.html",
+          controller: "WorkoutCtrl"
 
+        }
       }
-    }
-  })
+    })
 
   .state('app.search', {
     url: "/search",
@@ -50,32 +50,42 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.browse', {
-    url: "/browse",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/browse.html"
-      }
-    }
-  })
-    .state('app.playlists', {
-      url: "/playlists",
+      url: "/browse",
       views: {
         'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
+          templateUrl: "templates/browse.html"
+        }
+      }
+  })       
+  .state('app.log', {
+      url: "/logs",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/logs.html",
+          controller: 'LogsCtrl'
+
+        }
+      }
+  })       
+  .state('app.home', {
+    url: "/home",
+    views: {
+      'menuContent': {
+          templateUrl: "templates/home.html",
+          controller: 'HomeCtrl'
         }
       }
     })
 
-  .state('app.single', {
-    url: "/playlists/:playlistId",
+  .state('app.workset', {
+    url: "/workset/:worksetId",
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
+        templateUrl: "templates/workset.html",
+        controller: 'WorksetCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/home');
 });

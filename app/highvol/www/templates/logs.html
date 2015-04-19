@@ -1,0 +1,37 @@
+<ion-view view-title="Logs">
+  <ion-content>
+    <ion-list>
+
+        <div class="item item-divider">Workouts</div>
+        <ion-item ng-repeat="logEntry in logs.workouts">
+        {{logEntry.date}} {{logEntry.sets}}
+
+            <p ng-repeat="workout in logEntry.workout">
+                {{workout.title}}
+                {{workout.sets}}
+            </p>    
+        </ion-item>
+        <div class="item item-divider">Measuments</div>
+        <ion-item ng-repeat="logEntry in logs.measurements">
+        {{logEntry.date}} {{logEntry.sets}}
+
+            <p> Calories: {{logEntry.calories}} </p>
+            <p> Weight: {{logEntry.weight}} </p>
+            <p> BMI: {{logEntry.bmi}} </p>
+
+            </p>    
+        </ion-item>
+    </ion-list>
+  </ion-content>
+      <ion-tabs class="tabs-positive tabs-icon-only">
+  <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+    <!-- Tab 1 content -->
+  </ion-tab>
+
+  <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+    <!-- Tab 3 content -->
+  </ion-tab>
+
+</ion-tabs>
+
+</ion-view>
