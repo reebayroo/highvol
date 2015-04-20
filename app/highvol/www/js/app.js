@@ -56,8 +56,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           templateUrl: "templates/browse.html"
         }
       }
-  })       
-  .state('app.log', {
+    })
+    .state('app.log', {
       url: "/logs",
       views: {
         'menuContent': {
@@ -66,11 +66,20 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
         }
       }
-  })       
-  .state('app.home', {
-    url: "/home",
-    views: {
-      'menuContent': {
+    })
+    .state('app.workoutConfig', {
+      url: "/workout-config",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/workout-config.html",
+          controller: 'WorkoutConfigCtrl'
+        }
+      }
+    })
+    .state('app.home', {
+      url: "/home",
+      views: {
+        'menuContent': {
           templateUrl: "templates/home.html",
           controller: 'HomeCtrl'
         }

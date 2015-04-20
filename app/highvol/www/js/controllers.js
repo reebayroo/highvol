@@ -34,14 +34,25 @@ angular.module('starter.controllers', [])
 })
 
 .controller('HomeCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+  $scope.playlists = [{
+    title: 'Reggae',
+    id: 1
+  }, {
+    title: 'Chill',
+    id: 2
+  }, {
+    title: 'Dubstep',
+    id: 3
+  }, {
+    title: 'Indie',
+    id: 4
+  }, {
+    title: 'Rap',
+    id: 5
+  }, {
+    title: 'Cowbell',
+    id: 6
+  }];
 })
 
 .controller('WorkoutCtrl', function($scope) {
@@ -49,64 +60,94 @@ angular.module('starter.controllers', [])
 })
 
 .controller('WorksetCtrl', function($scope, $stateParams) {
-  $scope.workset = worksetService.retrieveWorkset( $stateParams.worksetId );
+  $scope.workset = worksetService.retrieveWorkset($stateParams.worksetId);
 })
 
 .controller('LogsCtrl', function($scope) {
   $scope.logs = worksetService.listLogs();
+})
+
+.controller('WorkoutConfigCtrl', function($scope) {
+  $scope.configuration = retrieveConfiguration();
+  $scope.moveItem = function(){};
 });
 
+var retrieveConfiguration = function() {
+  return {
+    availableSets: ["Bench Press", "Pull Ups", "Chin ups", "Squats", "Dead Lifts"],
+    workouts: [{
+      title: "Workout A",
+      worksets: ["Squats", "Dead Lifts"]
+    }, {
+      title: "Workout B",
+      worksets: ["Bench Press", "Pull Ups", "Chin ups"]
+    }, {
+      title: "Workout C",
+      worksets: ["Bench Press", "Pull Ups", "Chin ups"]
+    }]
+  }
+}
 
-var WorksetService = function(){}
 
-WorksetService.prototype  = {
-  listWorksets:  function(){
-    return [
-      { title: 'Squats', id: 0},
-      { title: 'Overhead Press', id: 1 },
-      { title: 'DeadLifts', id: 2 },
-      { title: 'Chin Ups', id: 3 }
-    ];
+var WorksetService = function() {}
+
+WorksetService.prototype = {
+  listWorksets: function() {
+    return [{
+      title: 'Squats',
+      id: 0
+    }, {
+      title: 'Overhead Press',
+      id: 1
+    }, {
+      title: 'DeadLifts',
+      id: 2
+    }, {
+      title: 'Chin Ups',
+      id: 3
+    }];
 
   },
-  retrieveWorkset: function(worksetId){
-    var result = _.find(this.listWorksets(), function(item){
+  retrieveWorkset: function(worksetId) {
+    var result = _.find(this.listWorksets(), function(item) {
       return worksetId == item.id;
     });
     console.log("retrieveWorkset %s %s ", worksetId, result);
     return result;
   },
-  listLogs: function(){
-    return {workouts: 
-  [
-      { date: 'Mar 12th', 
-        workout: [{title: "Squats", 
-          sets:  ["125 X 5", "125 X 5", "125 X 5", "125 X 5"  ] }, 
-         {title: "Dead Lifts", 
-          sets: ["125 X 5", "125 X 5", "125 X 5" ] },
-        ]
-      },
-      { date: 'Mar 10th', 
-        workout: [{title: "Squats", 
-          sets:  ["125 X 5", "125 X 5", "125 X 5" ] }, 
-         {title: "Dead Lifts", 
-          sets: ["125 X 5", "125 X 5", "125 X 5" ] },
-        ]
-      }
-    ]
-,measurements: [
-      { date: 'Mar 12th', 
-        calories: '385' ,
+  listLogs: function() {
+    return {
+      workouts: [{
+        date: 'Mar 12th',
+        workout: [{
+          title: "Squats",
+          sets: ["125 X 5", "125 X 5", "125 X 5", "125 X 5"]
+        }, {
+          title: "Dead Lifts",
+          sets: ["125 X 5", "125 X 5", "125 X 5"]
+        }, ]
+      }, {
+        date: 'Mar 10th',
+        workout: [{
+          title: "Squats",
+          sets: ["125 X 5", "125 X 5", "125 X 5"]
+        }, {
+          title: "Dead Lifts",
+          sets: ["125 X 5", "125 X 5", "125 X 5"]
+        }, ]
+      }],
+      measurements: [{
+        date: 'Mar 12th',
+        waistLine: '38.5"',
         bmi: "35%",
         weight: "189"
-      },
-      { date: 'Mar 10th', 
-        calories: '385' ,
+      }, {
+        date: 'Mar 10th',
+        waistLine: '38.5"',
         bmi: "35%",
         weight: "189"
-      }
-    ]
-};
+      }]
+    };
     // return [
     //   { date: 'Mar 10th', 
     //     [{title: "Squats", 
