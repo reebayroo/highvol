@@ -67,11 +67,33 @@ angular.module('starter.controllers', [])
   $scope.logs = worksetService.listLogs();
 })
 
-.controller('WorkoutConfigCtrl', function($scope) {
+.controller('ConfigWorkoutCtrl', function($scope) {
   $scope.configuration = retrieveConfiguration();
   $scope.moveItem = function(){};
-});
+})
 
+.controller('ConfigExerciseCtrl', function($scope) {
+  $scope.compoundExercises = retrieveListOfCompoundExercises();
+  $scope.moveItem = function(){};
+})
+
+;
+
+var retrieveListOfCompoundExercises = function(){
+  var _id = 0;
+  var id = function(){return _id++};
+  return [
+{id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Bench Press"},
+{id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Bent Over Row"},
+{id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Chin-Ups"},
+{id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Deadlifts"},
+{id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Dips"},
+{id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Incline Bench Press"},
+{id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Overhead Press"},
+{id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Pull-Ups"},
+{id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Squats"}
+];
+}
 var retrieveConfiguration = function() {
   return {
     availableSets: ["Bench Press", "Pull Ups", "Chin ups", "Squats", "Dead Lifts"],

@@ -67,15 +67,24 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    .state('app.workoutConfig', {
-      url: "/workout-config",
+    .state('app.configWorkout', {
+      url: "/config-workout",
       views: {
         'menuContent': {
-          templateUrl: "templates/workout-config.html",
-          controller: 'WorkoutConfigCtrl'
+          templateUrl: "templates/config-workout.html",
+          controller: 'ConfigWorkoutCtrl'
         }
       }
     })
+    .state('app.configWorkout2', {
+      url: "/config-exercise",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/config-exercise.html",
+          controller: 'ConfigExerciseCtrl'
+        }
+      }
+    })    
     .state('app.home', {
       url: "/home",
       views: {

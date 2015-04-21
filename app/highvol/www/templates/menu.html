@@ -14,27 +14,24 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Menu</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
         <ion-item menu-close href="#/app/new-workout">
-          New Workout
+          <i class="icon ion-star"></i> New Workout
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/workout-config">
-          Configure Workouts
+        <ion-item nav-clear menu-close href="#/app/config-workout">
+          <i class="icon ion-gear-b"></i> Configure Workouts
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/logs">
-          Logs 
+          <i class="icon ion-connection-bars"></i>  Logs 
         </ion-item>
         <ion-item nav-clear menu-close ng-click="login()">
-          Profile
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/browse">
-          Browse
+          <i class="icon ion-person"></i>  Profile
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/home">
-          Home
+          <i class="icon ion-android-home"></i>  Home
         </ion-item>
       </ion-list>
     </ion-content>
