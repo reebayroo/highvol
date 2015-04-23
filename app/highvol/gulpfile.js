@@ -6,11 +6,13 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var jshint = require('gulp-jshint');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
+var JS_SCRIPTS = 'www/js/**/*.js';
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
@@ -26,7 +28,8 @@ gulp.task('sass', function(done) {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
+  gulp.watch(JS_SCRIPTS, ['lint']);//, 'scripts']);
+  //gulp.watch(paths.sass, ['sass']);
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -47,4 +50,21 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+// Lint Task
+gulp.task('lint', function() {
+    return gulp.src(JS_SCRIPTS)
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
+
+// Concatenate & Minify JS
+gulp.task('scripts', function() {
+    return gulp.src('js/*.js')
+        .pipe(concat('all.js'))
+        .pipe(gulp.dest('dist'))
+        .pipe(rename('all.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist'));
 });
