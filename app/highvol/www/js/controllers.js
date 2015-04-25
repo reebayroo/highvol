@@ -67,10 +67,7 @@ angular.module('starter.controllers', [])
   $scope.logs = worksetService.listLogs();
 })
 
-.controller('ConfigWorkoutCtrl', function($scope) {
-  $scope.configuration = retrieveConfiguration();
-  $scope.moveItem = function(){};
-})
+
 
 // .controller('ConfigExerciseCtrl', function($scope) {
 //   $scope.compoundExercises = retrieveListOfCompoundExercises();
@@ -94,21 +91,6 @@ angular.module('starter.controllers', [])
 // {id: id(), checked:(_id % 2 == 0), targetSets:10, text: "Squats"}
 // ];
 // }
-var retrieveConfiguration = function() {
-  return {
-    availableSets: ["Bench Press", "Pull Ups", "Chin ups", "Squats", "Dead Lifts"],
-    workouts: [{
-      title: "Workout A",
-      worksets: ["Squats", "Dead Lifts"]
-    }, {
-      title: "Workout B",
-      worksets: ["Bench Press", "Pull Ups", "Chin ups"]
-    }, {
-      title: "Workout C",
-      worksets: ["Bench Press", "Pull Ups", "Chin ups"]
-    }]
-  }
-}
 
 
 var WorksetService = function() {}

@@ -3,9 +3,19 @@
   <ion-content>
 
     <ion-list>
-
       <div class="item item-divider">Compound Exercises</div>
       <ion-toggle ng-model="exercise.active" ng-repeat-start="exercise in compoundExercises" toggle-class="toggle-calm">
+        {{exercise.text}}
+        <p ng-show="exercise.active">Target Sets <strong>{{exercise.targetSets}}</strong></p>
+      </ion-toggle>
+      <ion-item ng-repeat-end ng-show="exercise.active">
+        <div class="range">
+          1
+          <input type="range" name="volume" min="3" max="20"  ng-model="exercise.targetSets">20</div>
+      </ion-item>
+
+      <div class="item item-divider">Isolation Exercises</div>
+      <ion-toggle ng-model="exercise.active" ng-repeat-start="exercise in isolationExercises" toggle-class="toggle-calm">
         {{exercise.text}}
         <p ng-show="exercise.active">Target Sets <strong>{{exercise.targetSets}}</strong></p>
       </ion-toggle>

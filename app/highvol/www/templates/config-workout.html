@@ -11,20 +11,14 @@
 
             <div class="item item-divider">{{workout.title}}</div>
             <ion-list>
-                <ion-item ng-repeat="set in configuration.availableSets" class="item-toggle">
-                    {{set }}
-                    <label class="toggle toggle-positive">
-                        <input type="checkbox">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
+                <ion-toggle ng-repeat="set in workout.worksets" ng-model="set.selected"   toggle-class="toggle-calm">
+                    {{set.exercise.text }} {{set.exercise.active }}
+                </ion-toggle>
 
-                </ion-item>
             </ion-list>
         </ion-item>
     </ion-list>
-    <p class="padding">&nbps;</p>
+    <p class="padding">&nbsp;</p>
 </ion-content>
 </ion-view>
     <div class="tabs tabs-background-positive tabs-striped tabs-color-assertive">
