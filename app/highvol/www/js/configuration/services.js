@@ -17,13 +17,13 @@
 	var COMPOUND = 'Compound';
 	var ISOLATION = 'Isolation';
 
-	var desc = function(label, kind){return {id: id, label:label, kind:kind}; };
+	var desc = function(id, label, kind){return {id: id, label:label, kind:kind}; };
 	var compound = function(id, label){ return desc(id, label, COMPOUND); };
 	var isolation = function(id, label){ return desc(id, label, ISOLATION); };
 
 
   var exercises = {
-			benchPress:compoud("851bfc7f-4064-4e76-8113-5ee61fc19e51","Bench Press"),
+			benchPress:compound("851bfc7f-4064-4e76-8113-5ee61fc19e51","Bench Press"),
 			bentOverRoll:compound("4973e2ed-5082-4b65-b79f-4d5260180188","Bent Over Barbell Row"),
 			chinUps:compound("9e64213b-9882-40e4-a001-eae480ab07f2","ChinUps"),
 			deadLifts:compound("66ce41f5-e914-40cf-9690-b98d54ce5bee","Deadlifts"),
@@ -59,7 +59,7 @@
 					kind: exercise.kind,
 					active: true
 				};
-			}
+			};
 
 			// 
 		var result = [ 
@@ -81,13 +81,16 @@
 
 		return _.chain(result).map(newWorkout).value();
 
-	}
+	};
 
-	function listWorkouts(){
+var listWorkouts = function (){
 		var selectable = function(item){return {exercise: item, selected: false}; };
 		var activeExercises = _.filter(this.listExercises(), {active:true});
-		var workouts = ["Workout A", "Workout B", "Workout C","Workout D"];
-	  var workoutSets =  _.map(workouts,function(w){ return {title: w, worksets : _.map(activeExercises, selectable) }});
+		var workoutsWithExercises = function(w){ return {title: w, worksets : _.map(activeExercises, selectable) }; };
+		
+		var workouts = _.map(["A","B","C","D","E"], function(l){ return "Workout " + l; });
+	  
+	  var workoutSets =  _.map(workouts,workoutsWithExercises);
 	  return {
 	  	workouts: workoutSets	
 	  };

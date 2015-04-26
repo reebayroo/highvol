@@ -1,5 +1,5 @@
 
-var configuration = angular.module('configuration.controller', ['configuration.services']);
+var configuration = angular.module('configuration.controllers', ['configuration.services']);
 
 
 configuration.controller('ConfigExerciseCtrl', function($scope, exerciseService) {
@@ -14,7 +14,8 @@ configuration.controller('ConfigExerciseCtrl', function($scope, exerciseService)
 configuration.controller('ConfigWorkoutCtrl', function($scope, exerciseService) {
   $scope.configuration = exerciseService.listWorkouts();
   $scope.moveItem = function(){};
-})
+});
+
 console.log("leaving configuration %s ", configuration);
 
 var retrieveConfiguration = function() {
@@ -30,5 +31,5 @@ var retrieveConfiguration = function() {
       title: "Workout C",
       worksets: ["Bench Press", "Pull Ups", "Chin ups"]
     }]
-  }
-}
+  };
+};

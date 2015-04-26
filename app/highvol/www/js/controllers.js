@@ -55,13 +55,7 @@ angular.module('starter.controllers', [])
   }];
 })
 
-.controller('WorkoutCtrl', function($scope) {
-  $scope.worksets = worksetService.listWorksets();
-})
 
-.controller('WorksetCtrl', function($scope, $stateParams) {
-  $scope.workset = worksetService.retrieveWorkset($stateParams.worksetId);
-})
 
 .controller('LogsCtrl', function($scope) {
   $scope.logs = worksetService.listLogs();
@@ -93,82 +87,4 @@ angular.module('starter.controllers', [])
 // }
 
 
-var WorksetService = function() {}
 
-WorksetService.prototype = {
-  listWorksets: function() {
-    return [{
-      title: 'Squats',
-      id: 0
-    }, {
-      title: 'Overhead Press',
-      id: 1
-    }, {
-      title: 'DeadLifts',
-      id: 2
-    }, {
-      title: 'Chin Ups',
-      id: 3
-    }];
-
-  },
-  retrieveWorkset: function(worksetId) {
-    var result = _.find(this.listWorksets(), function(item) {
-      return worksetId == item.id;
-    });
-    console.log("retrieveWorkset %s %s ", worksetId, result);
-    return result;
-  },
-  listLogs: function() {
-    return {
-      workouts: [{
-        date: 'Mar 12th',
-        workout: [{
-          title: "Squats",
-          sets: ["125 X 5", "125 X 5", "125 X 5", "125 X 5"]
-        }, {
-          title: "Dead Lifts",
-          sets: ["125 X 5", "125 X 5", "125 X 5"]
-        }, ]
-      }, {
-        date: 'Mar 10th',
-        workout: [{
-          title: "Squats",
-          sets: ["125 X 5", "125 X 5", "125 X 5"]
-        }, {
-          title: "Dead Lifts",
-          sets: ["125 X 5", "125 X 5", "125 X 5"]
-        }, ]
-      }],
-      measurements: [{
-        date: 'Mar 12th',
-        waistLine: '38.5"',
-        bmi: "35%",
-        weight: "189"
-      }, {
-        date: 'Mar 10th',
-        waistLine: '38.5"',
-        bmi: "35%",
-        weight: "189"
-      }]
-    };
-    // return [
-    //   { date: 'Mar 10th', 
-    //     [{title: "Squats", 
-    //       sets:  ["125 X 5", "125 X 5", "125 X 5" ] }, 
-    //      {title: "Dead Lifts", 
-    //       sets: ["125 X 5", "125 X 5", "125 X 5" ] },
-    //     ]
-    //   },
-    //   { date: 'Mar 8th', 
-    //     [{title: "Squats", 
-    //       sets:  ["125 X 5", "125 X 5", "125 X 5" ] }, 
-    //      {title: "Dead Lifts", 
-    //       sets: ["125 X 5", "125 X 5", "125 X 5" ] },
-    //     ]
-    //   },
-    // ];
-  }
-
-}
-var worksetService = new WorksetService();
