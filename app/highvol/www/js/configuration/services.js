@@ -14,46 +14,72 @@
 
 		};
 	});
-
-
-	var listExercises = function() {
-		if (!this.loadedList)
-			this.loadedList = createNewList();
-		return this.loadedList;
-	};
-
 	var COMPOUND = 'Compound';
 	var ISOLATION = 'Isolation';
 
+	var desc = function(label, kind){return {label:label, kind:kind}; };
+	var compound = function(label){ return desc(label, COMPOUND); };
+	var isolation = function(label){ return desc(label, ISOLATION); };
+
+
+  var exercises = {
+				benchPress:compound("Bench Press"),
+				bentOverRoll:compound("Bent Over Barbell Row"),
+				chinUps:compound("ChinUps"),
+				deadLifts:compound("Deadlifts"),
+				dips:compound("Dips"),
+				inclineBenchPress:compound("Incline Bench Press"),
+				overheadPress:compound("Overhead Press"),
+				pullUps:compound("Pull-Ups"),
+				squats:compound("Squats"),
+				skullCrusher:isolation("Ez Bar Skullcrusher"),
+				barbellCurls:isolation("Barbell Curls"), 
+				sideLaterals:isolation("Dumbbell Side Laterals"), 
+				reverseGripEzCurl:isolation("Reverse Grip Ez Bar Curl"), 
+				stadingCalfRaise:isolation("Standing Calf Raise")
+
+  };
+  console.log(exercises);
+	var listExercises = function() {
+		// if (!this.loadedList)
+			this.loadedList = createNewList();
+			console.log(this.loadedList);
+		return this.loadedList;
+	};
+
+	
+
 	var createNewList = function() {
-		var desc = function(label, kind){return {label:label, kind:kind}; };
-		var compound = function(label){ return desc(label, "Compound"); };
-		var isolation = function(label){ return desc(label, "Isolation"); };
-		var newWorkout = function(description) {
+
+		var newWorkout = function(exercise) {
 				return {
 					id: uuid.v4(),
-					active: false,
 					targetSets: 10,
-					text: description.label,
-					kind: description.kind
+					text: exercise.label,
+					kind: exercise.kind,
+					active: true
 				};
 			}
+
 			// 
 		var result = [ 
-				compound("Bench Press"),
-				compound("Bent Over Row"),
-				compound("Chin-Ups"),
-				compound("Deadlifts"),
-				compound("Dips"),
-				compound("Incline Bench Press"),
-				compound("Overhead Press"),
-				compound("Pull-Ups"),
-				compound("Squats"),
-				isolation("Triceps EZ-BAR Skullcrusher"),
-				isolation("Biceps Curls"), 
+				exercises.benchPress,
+				exercises.bentOverRoll,
+				exercises.chinUps,
+				exercises.deadLifts,
+				exercises.dips,
+				exercises.inclineBenchPress,
+				exercises.overheadPress,
+				exercises.pullUps,
+				exercises.squats,
+				exercises.skullCrusher,
+				exercises.barbellCurls,
+				exercises.sideLaterals,
+				exercises.reverseGripEzCurl,
+				exercises.stadingCalfRaise
 		];
 
-		return _.chain(result).map(newWorkout).sortBy('text').value();
+		return _.chain(result).map(newWorkout).value();
 
 	}
 
