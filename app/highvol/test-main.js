@@ -20,11 +20,13 @@ require.config({
   // example of using shim, to load non AMD libraries (such as underscore and jquery)
   paths: {
     'angular': 'lib/angular/angular',
+    'config-services': 'js/configuration/services',
   },
 
   shim: {
     'underscore': {exports: '_'},
-    'angular': {exports: 'angular'}
+    'angular': {exports: 'angular'},
+    'config-services' : {deps: ['angular']}
   },
 
   // dynamically load all test files

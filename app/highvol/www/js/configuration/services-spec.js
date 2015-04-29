@@ -1,8 +1,13 @@
-define(['angular'], function(angular) {
-	describe("angular should be injected", function(){
-		it('should not be null', function() {
+define(['angular', 'config-services'], function(angular) {
+	describe("the injections of this test", function(){
+		it('angular should not be null', function() {
 			expect(angular).toBeDefined();
 		});
+		it('configuration.services should not be null', function() {
+			var module = angular.module('configuration.services');
+			expect(module).toBeDefined();
+		});
+
 	});
 	// describe('PasswordController', function() {
 	// 	console.log(angular);
