@@ -4,7 +4,7 @@ var configuration = angular.module('configuration.controllers', ['configuration.
 
 configuration.controller('ConfigExerciseCtrl', function($scope, exerciseService) {
 	var exercises = _.groupBy(exerciseService.listExercises(),'kind');
-	console.log(exercises);
+	// console.log(exercises);
   $scope.compoundExercises = exercises["Compound"];
   $scope.isolationExercises = exercises["Isolation"];
   $scope.moveItem = function(){};
@@ -16,7 +16,7 @@ configuration.controller('ConfigWorkoutCtrl', function($scope, exerciseService) 
   $scope.moveItem = function(){};
 });
 
-console.log("leaving configuration %s ", configuration);
+// console.log("leaving configuration %s ", configuration);
 
 var retrieveConfiguration = function() {
   return {

@@ -4,22 +4,43 @@
 
 	var configuration = angular.module('configuration.services', []);
 
-	console.log("inside configuration service %s", configuration);
+	//console.log("inside configuration service %s", configuration);
 
 	configuration.factory('exerciseService', function() {
 		return {
 			listExercises: listExercises,
 			listWorkouts : listWorkouts,
-			kinds : { COMPOUND : COMPOUND, ISOLATION : ISOLATION }
+			kinds : { COMPOUND : COMPOUND, ISOLATION : ISOLATION },
+			WORKOUT_A : WORKOUT_A,
+			WORKOUT_B : WORKOUT_B,
+			WORKOUT_C : WORKOUT_C,
+			WORKOUT_D : WORKOUT_D,
+			WORKOUT_E : WORKOUT_E,
+			WORKOUT_F : WORKOUT_F,
+			WORKOUT_G : WORKOUT_G,
+			exercises : exercises
 
 		};
 	});
 	var COMPOUND = 'Compound';
 	var ISOLATION = 'Isolation';
+	var newWorkout= function(name, id){
+		return {name:name, id:id, toString : function(){return name;}}
+	}
+	var WORKOUT_A = newWorkout("Workout A", 0x00001);
+	var WORKOUT_B = newWorkout("Workout B", 0x00002);
+	var WORKOUT_C = newWorkout("Workout C", 0x00004);
+	var WORKOUT_D = newWorkout("Workout D", 0x00008);
+	var WORKOUT_E = newWorkout("Workout E", 0x00016);
+	var WORKOUT_F = newWorkout("Workout F", 0x00032);
+	var WORKOUT_G = newWorkout("Workout G", 0x00064);
+	var workouts = [WORKOUT_A, WORKOUT_B, WORKOUT_C, WORKOUT_D, WORKOUT_E, WORKOUT_F, WORKOUT_G];
 
-	var desc = function(id, label, kind){return {id: id, label:label, kind:kind}; };
-	var compound = function(id, label){ return desc(id, label, COMPOUND); };
-	var isolation = function(id, label){ return desc(id, label, ISOLATION); };
+
+
+	var newExercise = function(id, label, kind){return {id: id, label:label, kind:kind, toString:function(){return this.label; }}; };
+	var compound = function(id, label){ return newExercise(id, label, COMPOUND); };
+	var isolation = function(id, label){ return newExercise(id, label, ISOLATION); };
 
 
   var exercises = {
@@ -39,11 +60,11 @@
 			stadingCalfRaise:isolation("37179b0c-f544-4105-b222-0994ba3859fe","Standing Calf Raise")
 
   };
-  console.log(exercises);
+  //console.log(exercises);
 	var listExercises = function() {
 		// if (!this.loadedList)
 			this.loadedList = createNewList();
-			console.log(this.loadedList);
+			//console.log(this.loadedList);
 		return this.loadedList;
 	};
 
@@ -57,7 +78,8 @@
 					targetSets: 10,
 					text: exercise.label,
 					kind: exercise.kind,
-					active: true
+					active: true,
+					toString:function(){return this.text}
 				};
 			};
 
@@ -84,29 +106,41 @@
 	};
 
 var listWorkouts = function (){
-		var selectable = function(item){return {exercise: item, selected: false}; };
-		var activeExercises = _.filter(this.listExercises(), {active:true});
-		var workoutsWithExercises = function(w){ return {title: w, worksets : _.map(activeExercises, selectable) }; };
+
+
+		var isPreselectedExercise = function(workout, exercise){
+			 var result = !!predefined[workout] && !!predefined[workout][exercise];
+			 return result;
+		};
 		
-		var workouts = _.map(["A","B","C","D","E"], function(l){ return "Workout " + l; });
+
+	  var preSelect = function(){
+	  		var result =  _.reduce(_.toArray(arguments), function(map, item){map[item]=true; return map;},{});
+	  		return result;
+	  }
+	 	var predefined =  {};
+	 	predefined[ WORKOUT_A ] =  preSelect(exercises.benchPress, exercises.bentOverRoll);
+
+		var selectableExercise =  function(workout) {					
+					return  function(exercise){
+								return {exercise: exercise, 
+												selected: isPreselectedExercise(workout, exercise)}; 
+						};
+
+		};
+
+
+
+		var activeExercises = _.filter(this.listExercises(), {active:true});
+
+	  var result =  _.map(workouts, function(workout){
+				 return {workout: workout, 
+				 				 worksets : _.map(activeExercises, selectableExercise(workout)) }; 
+		});
+
+
+	  return  result;
 	  
-	  var workoutSets =  _.map(workouts,workoutsWithExercises);
-	  return {
-	  	workouts: workoutSets	
-	  };
-	  // {
-	  //   availableSets: ["Bench Press", "Pull Ups", "Chin ups", "Squats", "Dead Lifts"],
-	  //   workouts: [{
-	  //     title: "Workout A",
-	  //     worksets: ["Squats", "Dead Lifts"]
-	  //   }, {
-	  //     title: "Workout B",
-	  //     worksets: ["Bench Press", "Pull Ups", "Chin ups"]
-	  //   }, {
-	  //     title: "Workout C",
-	  //     worksets: ["Bench Press", "Pull Ups", "Chin ups"]
-	  //   }]
-	  // }
 	};
 
 
