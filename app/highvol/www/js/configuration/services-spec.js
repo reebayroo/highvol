@@ -69,8 +69,8 @@ describe('Service: configurationService', function() {
 				it("Predefined " + rowIndex, function() {
 					var row = rows[rowIndex];
 
-					var workout = _.first(row);
-					var exercises = _.rest(row);
+								var workout = _.first(row);
+								var exercises = _.rest(row);
 
 					var actual = exerciseService.preparedWorkout("default");
 
