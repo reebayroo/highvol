@@ -7,9 +7,17 @@ describe('Service: configurationService', function() {
 
 	// instantiate service
 	var exerciseService, CURRENT_SIZE = 14;
+	var WORKOUTS;
+	var EXERCISES;
+
 	beforeEach(inject(function(_exerciseService_) {
 		exerciseService = _exerciseService_;
+		WORKOUTS = exerciseService.WORKOUTS;
+		EXERCISES = exerciseService.EXERCISES;
+
 	}));
+
+
 
 	describe('The exercise service', function() {
 		it('should be defined', function() {
@@ -31,14 +39,60 @@ describe('Service: configurationService', function() {
 					targetSets: 10,
 					text: 'Bench Press',
 					kind: 'Compound',
-					active: true, 
-					toString : actual.toString
+					active: true,
+					toString: actual.toString
 				};
 
 				expect(actual).toEqual(expected);
 			});
 
 		});
+		describe('has WORKOUTS with ', function() {
+			_.each(["A", "B", "C", "D", "E", "F", "G"], function(letter) {
+				it(" WORKOUT_" + letter, function() {
+					expect(WORKOUTS["WORKOUT_" + letter]).toBeDefined();
+				});
+			})
+		});
+
+
+		describe('has predefinedWorkouts ', function() {
+			var rows;
+			beforeEach(function() {
+				rows = [
+					[WORKOUTS.WORKOUT_A, EXERCISES.benchPress, EXERCISES.bentOverRoll],
+					[WORKOUTS.WORKOUT_B, EXERCISES.squats, EXERCISES.barbellCurls]
+				];
+
+			});
+			_.each(_.range(2), function(rowIndex) {
+				it("Predefined " + rowIndex, function() {
+					var row = rows[rowIndex];
+
+					var workout = _.first(row);
+					var exercises = _.rest(row);
+
+					var actual = exerciseService.preparedWorkout("default");
+
+					expect(actual).toBeDefined();
+					expect(actual[workout]).toBeDefined();
+					expect(actual[workout]).toEqual(exercises);
+				});
+			});
+		});
+
+		describe('has preparedWorkouts ', function() {
+
+			it('that is defined', function() {
+				expect(exerciseService.preparedWorkouts).toBeDefined();
+			});
+
+			it('that returns a list of predefined workouts', function() {
+				expect(exerciseService.preparedWorkouts())
+					.toEqual(["default"]);
+			});
+		});
+
 
 		describe('has listWorkouts that', function() {
 
@@ -50,13 +104,13 @@ describe('Service: configurationService', function() {
 					return item.workout
 				};
 				var names = _.map(exerciseService.listWorkouts(), toTitles);
-				expect(names).toEqual([exerciseService.WORKOUT_A,
-					exerciseService.WORKOUT_B,
-					exerciseService.WORKOUT_C,
-					exerciseService.WORKOUT_D,
-					exerciseService.WORKOUT_E,
-					exerciseService.WORKOUT_F,
-					exerciseService.WORKOUT_G
+				expect(names).toEqual([WORKOUTS.WORKOUT_A,
+					WORKOUTS.WORKOUT_B,
+					WORKOUTS.WORKOUT_C,
+					WORKOUTS.WORKOUT_D,
+					WORKOUTS.WORKOUT_E,
+					WORKOUTS.WORKOUT_F,
+					WORKOUTS.WORKOUT_G
 				]);
 			});
 			it('... each with its own copy of exercises', function() {
@@ -67,26 +121,31 @@ describe('Service: configurationService', function() {
 					});
 			});
 
-			function verify(selectedExercises){
+			function verify(selectedExercises) {
 				var expectedExercises = _.rest(arguments);
 
 				expect(selectedExercises.length).toBe(2);
-				var justExercises =  _.map( selectedExercises, function(item){return item.exercise.id; });
-				expect( justExercises )
-					.toEqual( _.map(expectedExercises, "id") );
+				var justExercises = _.map(selectedExercises, function(item) {
+					return item.exercise.id;
+				});
+				expect(justExercises)
+					.toEqual(_.map(expectedExercises, "id"));
 
 
-			} 
+			}
 
 
 			it('The workout A will have benchPress and bentOverRoll on', function() {
-				var workoutA = _.findWhere(exerciseService.listWorkouts(), {workout: exerciseService.WORKOUT_A});
+				var workoutA = _.findWhere(exerciseService.listWorkouts(), {
+					workout: WORKOUTS.WORKOUT_A
+				});
 
 				var selectedEx = _.select(workoutA.worksets, {
 					selected: true
 				});
-				verify(selectedEx, exerciseService.exercises.benchPress, exerciseService.exercises.bentOverRoll);
+				verify(selectedEx, EXERCISES.benchPress, EXERCISES.bentOverRoll);
 			});
+
 		});
 	});
 });
