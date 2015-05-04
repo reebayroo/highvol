@@ -3,17 +3,17 @@
 describe('Service: configurationService', function() {
 
 	// load the service's module
-	beforeEach(module('configuration.services'));
+	beforeEach(module('services.exercise.configuration'));
 
 	// instantiate service
-	var exerciseService, CURRENT_SIZE = 14;
+	var exerciseConfigurationService, CURRENT_SIZE = 14;
 	var WORKOUTS;
 	var EXERCISES;
 
-	beforeEach(inject(function(_exerciseService_) {
-		exerciseService = _exerciseService_;
-		WORKOUTS = exerciseService.WORKOUTS;
-		EXERCISES = exerciseService.EXERCISES;
+	beforeEach(inject(function(_exerciseConfigurationService_) {
+		exerciseConfigurationService = _exerciseConfigurationService_;
+		WORKOUTS = exerciseConfigurationService.WORKOUTS;
+		EXERCISES = exerciseConfigurationService.EXERCISES;
 
 	}));
 
@@ -21,19 +21,19 @@ describe('Service: configurationService', function() {
 
 	describe('The exercise service', function() {
 		it('should be defined', function() {
-			expect(!!exerciseService).toBe(true);
+			expect(!!exerciseConfigurationService).toBe(true);
 		});
 		describe('has  listExercises ... ', function() {
 			it('that is defined', function() {
-				expect(!!exerciseService.listExercises).toBe(true);
+				expect(!!exerciseConfigurationService.listExercises).toBe(true);
 			});
 			it('that is predefined', function() {
-				var actual = exerciseService.listExercises();
+				var actual = exerciseConfigurationService.listExercises();
 				expect(actual.length).toBe(CURRENT_SIZE);
 
 			});
 			it('that returns exercises with id, targetSets, text, kind and active ...', function() {
-				var actual = exerciseService.listExercises()[0];
+				var actual = exerciseConfigurationService.listExercises()[0];
 				var expected = {
 					id: '851bfc7f-4064-4e76-8113-5ee61fc19e51',
 					targetSets: 10,
@@ -72,7 +72,7 @@ describe('Service: configurationService', function() {
 								var workout = _.first(row);
 								var exercises = _.rest(row);
 
-					var actual = exerciseService.preparedWorkout("default");
+					var actual = exerciseConfigurationService.preparedWorkout("default");
 
 					expect(actual).toBeDefined();
 					expect(actual[workout]).toBeDefined();
@@ -84,11 +84,11 @@ describe('Service: configurationService', function() {
 		describe('has preparedWorkouts ', function() {
 
 			it('that is defined', function() {
-				expect(exerciseService.preparedWorkouts).toBeDefined();
+				expect(exerciseConfigurationService.preparedWorkouts).toBeDefined();
 			});
 
 			it('that returns a list of predefined workouts', function() {
-				expect(exerciseService.preparedWorkouts())
+				expect(exerciseConfigurationService.preparedWorkouts())
 					.toEqual(["default"]);
 			});
 		});
@@ -97,13 +97,13 @@ describe('Service: configurationService', function() {
 		describe('has listWorkouts that', function() {
 
 			it('... is defined', function() {
-				expect(!!exerciseService.listWorkouts).toBe(true);
+				expect(!!exerciseConfigurationService.listWorkouts).toBe(true);
 			});
 			it('... has seven Workouts', function() {
 				var toTitles = function(item) {
 					return item.workout
 				};
-				var names = _.map(exerciseService.listWorkouts(), toTitles);
+				var names = _.map(exerciseConfigurationService.listWorkouts(), toTitles);
 				expect(names).toEqual([WORKOUTS.WORKOUT_A,
 					WORKOUTS.WORKOUT_B,
 					WORKOUTS.WORKOUT_C,
@@ -115,7 +115,7 @@ describe('Service: configurationService', function() {
 			});
 			it('... each with its own copy of exercises', function() {
 				var names = _.forEach(
-					exerciseService.listWorkouts(),
+					exerciseConfigurationService.listWorkouts(),
 					function(item, index) {
 						expect(item.worksets.length).toEqual(CURRENT_SIZE);
 					});
@@ -136,7 +136,7 @@ describe('Service: configurationService', function() {
 
 
 			it('The workout A will have benchPress and bentOverRoll on', function() {
-				var workoutA = _.findWhere(exerciseService.listWorkouts(), {
+				var workoutA = _.findWhere(exerciseConfigurationService.listWorkouts(), {
 					workout: WORKOUTS.WORKOUT_A
 				});
 

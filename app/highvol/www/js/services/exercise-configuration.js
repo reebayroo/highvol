@@ -158,7 +158,7 @@
 
 	};
 
-	var configuration = angular.module('configuration.services', []);
+	var configuration = angular.module('services.exercise.configuration', []);
 
 	//console.log("inside configuration service %s", configuration);
 
@@ -175,7 +175,7 @@
 		return mapResult;
 	};
 
-	configuration.factory('exerciseService', function() {
+	configuration.factory('exerciseConfigurationService', function() {
 		return {
 			listExercises: listExercises,
 			listWorkouts: listWorkouts,

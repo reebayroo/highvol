@@ -3,18 +3,20 @@
 - provides a list of sorted and grouped exercises that allow users to activate or deactivate an exercise used in the workouts
 - groups this list of exercises according to type, muscle group and equipment, always sorting by name
 - the types are:  
+
 >    Compound, Isolation and N/A
+
 - the muscle groups are: 
+
    > Abdominals, Abductors, Adductors, Biceps, Calves, Chest, Forearms, Glutes, Hamstrings , Lats , Lower Back , Middle Back, Neck, Quadriceps, Shoulders, Traps, Triceps
+
 - the equipments are:
     > Bands , Foam Roll, Barbell , Kettlebells, Body Only , Machine, Cable , Medicine Ball, Dumbbell , None, E-Z Curl Bar , Exercise Ball, Other
     
-- the exercise will have the properties:
+- the routine will have the properties:
     * group properties
     * name
     * id
-    * targets sets (1 to 15)
-    * targets reps  (1 to 15 to  failure)
  
 
 # The workout template service
@@ -24,11 +26,21 @@
 * will support the import and export of new templates like stronglifts and current
 
 * will start with a default: (stronglifts)
-* Templates will be addede along
+* Templates will be added along the new versions of the app
 * three templates: Dumbells Only, Power Rack (stronglifts) and Beginner
 * another template: [tnation-basic]
     
     
+# The configuration Exercise service
+
+A selected routine should have 
+    * the routine
+    * targets sets (1 to 15)
+    * targets reps  (1 to 15 to  failure)
+    * selected
+
+* Allows the user to select the exercises they want to use. 
+* Groups the selection by group properties.
 
 # The configuration service 
 
