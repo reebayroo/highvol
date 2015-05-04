@@ -41,11 +41,16 @@
 			}
 		};
 	}
-	var defaultTemplate = function(exercises) {
+	var defaultTemplate = function(routines) {
 
 		return buildTemplate()
-			.put(workouts.workoutA, exercises.benchPress, exercises.bentOverRoll)
-			.put(workouts.workoutB, exercises.squats, exercises.barbellCurls)
+			.put(workouts.workoutA, routines.benchPress, routines.bentOverRoll)
+			.put(workouts.workoutB, routines.squats, routines.chinUps)
+			.put(workouts.workoutC, routines.pullUps, routines.reverseGripEzCurl)
+			.put(workouts.workoutD, routines.deadLifts, routines.overheadPress)
+			.put(workouts.workoutE, routines.dips, routines.barbellCurls)
+			.put(workouts.workoutF)
+			.put(workouts.workoutG)
 			.value();
 
 
