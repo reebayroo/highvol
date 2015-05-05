@@ -57,7 +57,7 @@ describe('@ services/wokout-templates', function() {
 			it('... none for workoutF ...', function() {
 					check(workouts.workoutF);
 			});
-			it('... none for  workoutG ...', function() {
+			it('... none for workoutG ...', function() {
 					check(workouts.workoutG);
 			});
 

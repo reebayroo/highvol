@@ -108,7 +108,7 @@
 		 muscles.Chest)
 
 	};
-	console.log(routines);
+	// console.log(routines);
 	var listExercises = function() {
 		// if (!this.loadedList)
 		this.loadedList = createNewList();

@@ -1,7 +1,6 @@
-#The exercise service 
+#The exercise service (services.exercise.exerciseService)
 
-- provides a list of sorted and grouped exercises that allow users to activate or deactivate an exercise used in the workouts
-- groups this list of exercises according to type, muscle group and equipment, always sorting by name
+- Provides the list of all exercises
 - the types are:  
 
 >    Compound, Isolation and N/A
@@ -19,28 +18,32 @@
     * id
  
 
-# The workout template service
+# The workout template service (services.workoutTemplate.workoutTemplateService)
 
 * provides a list of workouts templates with preselected exercises:
 * a workout template will have a range from A to G representing every day of the week.
 * will support the import and export of new templates like stronglifts and current
 
-* will start with a default: (stronglifts)
+* will start with a default
+* will provide a list of custom workouts. 
 * Templates will be added along the new versions of the app
 * three templates: Dumbells Only, Power Rack (stronglifts) and Beginner
 * another template: [tnation-basic]
     
     
-# The configuration Exercise service
+# The configuration Exercise selection service (services.configExerciseSelection.exerciseSelectionService)
+- provides a list of sorted and grouped exercises that allow users to activate or deactivate an exercise used in the workouts
 
-A selected routine should have 
+- groups this list of exercises according to type, muscle group or equipment, always sorting secondly by name
+
+- A selected routine should have 
     * the routine
     * targets sets (1 to 15)
     * targets reps  (1 to 15 to  failure)
     * selected
+- retrieves the exercises list for the workout selected workout template for initial selection
+- keeps the selection state for further retrievel of other services
 
-* Allows the user to select the exercises they want to use. 
-* Groups the selection by group properties.
 
 # The configuration service 
 
