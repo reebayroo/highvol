@@ -56,12 +56,18 @@
 
 	}
 
+	var extractRoutinesFromTemplate = function(template){
+		return _.reduce(Object.keys(template), function(memo, weekday){
+			return memo.concat(_.toArray(template[weekday]));
+		}, []);
+	}
 
 	var _module = angular.module('services.workoutTemplate', ['services.exercise']);
 	_module.factory('workoutTemplateService', function(exerciseService) {
 		return {
 			workouts: workouts,
-			defaultTemplate: defaultTemplate(exerciseService.routines)
+			defaultTemplate: defaultTemplate(exerciseService.routines),
+			extractRoutinesFromTemplate: extractRoutinesFromTemplate
 		};
 
 	}); //_module.factory

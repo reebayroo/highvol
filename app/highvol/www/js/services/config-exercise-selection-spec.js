@@ -30,27 +30,46 @@ describe('@ services/config-exercise-selection', function() {
 		describe('should provide a list of selected exercises ', function() {
 
 			it('that is defined', function() {
-				expect(exerciseSelectionService.listSelection).toBeDefined();
+				expect(exerciseSelectionService.selectableRoutinesList).toBeDefined();
 			});
 
 			describe('... that ... ', function() {
 				var selection;
 				beforeEach(function() {
-					selection = exerciseSelectionService.listSelection();
+					selection = exerciseSelectionService.selectableRoutinesList();
 				});
-			it('contains all routines', function() {
-				expect(selection).toBeDefined();
-				expect(selection.length).toEqual(_.toArray(exerciseService.routines).length);
-			});
-			it('that should contain a routine with default target ', function() {
-				var expected = { 
-						routine: exerciseService.routines.benchPress, 
+				it('contains all routines', function() {
+					expect(selection.length).toEqual(_.toArray(exerciseService.routines).length);
+				});
+				it('that should contain a routine with default target ', function() {
+
+					expect(selection).toContain({
+						routine: exerciseService.routines.benchPress,
 						selected: true,
-						targetReps: 10, 
+						targetReps: 10,
 						targetSets: 10
-				}
-				expect(selection).toContain(expected);
-			});
+					});
+				});
+
+
+				it('that routines that belongs to the default template will be selected', function() {
+					var lengthOfWorkoutTemplateWorkouts = function(defaultTemplate) {
+						//
+
+						return _.reduce(
+							Object.keys(defaultTemplate),
+							function(sum, key) {
+								return sum + defaultTemplate[key].length;
+							}, 0);
+
+					};
+
+
+					var expectedListLength = lengthOfWorkoutTemplateWorkouts(workoutTemplateService.defaultTemplate);
+					var selectedSelection = _.filter(selection, function(item){return item.selected;});
+					expect(selectedSelection.length).toEqual(expectedListLength);
+
+				});
 
 
 
@@ -62,4 +81,4 @@ describe('@ services/config-exercise-selection', function() {
 
 
 
-});
+}); //EOF

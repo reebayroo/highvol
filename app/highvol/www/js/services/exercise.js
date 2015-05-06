@@ -44,20 +44,7 @@
 	}  
 
 
-	var routine = function(equipment, muscleGroup, routineType, id, label) {
-		return function(){ 
-				return {
-						id: id,
-						label: label,
-						routineType: routineType,
-						equipment:equipment, 
-						targetMuscles : _.toArray(arguments),
-						toString: function() {
-							return this.label;
-						}
-				};
-			};
-	};
+
 	var muscles = {
 		Abdominals:muscle("426f7bb5-d63d-4419-abba-7c653463e177", "Abdominals"),
 		Abductors:muscle("aa87f840-6bde-42b6-a5b3-c1a43193b338", "Abductors"),
@@ -77,6 +64,21 @@
 		Traps:muscle("89345aec-7e93-4260-95d9-347e425cead5", "Traps"),
 		Triceps:muscle("c16ba888-7012-43c9-86b3-a346dded4416", "Triceps"),
 	};
+
+	var routine = function(equipment, routineType, id, label) {
+		return function(){ 
+				return {
+						id: id,
+						label: label,
+						routineType: routineType,
+						equipment:equipment, 
+						targetMuscles : _.toArray(arguments),
+						toString: function() {
+							return this.label;
+						}
+				};
+			};
+	};	
 	var routines = {
 		benchPress: routine(equipments.Barbell, types.compound,"851bfc7f-4064-4e76-8113-5ee61fc19e51", "Bench Press")( 
 		 muscles.Chest, muscles.Shoulders, muscles.Triceps),

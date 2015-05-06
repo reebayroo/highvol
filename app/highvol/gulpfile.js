@@ -62,7 +62,9 @@ gulp.task('test', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true,
-    logLevel: "debug", 
+    logLevel: "info", 
+    browsers: ["PhantomJS"]
+    
   }, done);
 });
 
@@ -74,7 +76,14 @@ gulp.task('watch-test', function (done) {
     browsers: ["PhantomJS"]
   }, done);
 });
-
+gulp.task('watch-test-chrome', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: false,
+    logLevel: "debug",
+    browsers: ["Chrome"]
+  }, done);
+});
 // Lint Task
 gulp.task('lint', function() {
     return gulp.src(JS_SCRIPTS)
