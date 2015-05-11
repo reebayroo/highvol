@@ -3,17 +3,41 @@
   <ion-content>
 
     <ion-list>
-      <ion-toggle ng-model="exercise.selected" ng-repeat-start="exercise in routines" toggle-class="toggle-calm">
-        {{exercise.routine.label}}
-        <p ng-show="exercise.selected">Target Sets <strong>{{exercise.targetSets}}</strong></p>
-      </ion-toggle>
+      <ion-toggle ng-model="exercise.selected" ng-repeat-start="exercise in routines" toggle-class="toggle-calm">{{exercise.routine.label}}</ion-toggle>
+      <ion-item ng-show="exercise.selected">
+        <div class="row">
+          <div class="col col-25">
+            <p ng-show="exercise.selected">
+              Target Reps <strong>{{exercise.targetReps}}</strong>
+            </p>
+          </div>
+          <div class="col col-75 ">
+            <div class="range">
+
+              <input type="range" name="volume" min="3" max="20"  ng-model="exercise.targetReps"/>
+            </div>
+          </div>
+        </div>
+      </ion-item>
       <ion-item ng-repeat-end ng-show="exercise.selected">
-        <div class="range">
-          1
-          <input type="range" name="volume" min="3" max="20"  ng-model="exercise.targetSets">20</div>
+        <div class="row">
+          <div class="col col-25">
+            <p ng-show="exercise.selected">
+              Target Sets <strong>{{exercise.targetSets}}</strong>
+            </p>
+          </div>
+          <div class="col col-75 ">
+            <div class="range">
+
+              <input type="range" name="volume" min="3" max="20"  ng-model="exercise.targetSets"/>
+            </div>
+          </div>
+        </div>
       </ion-item>
     </ion-list>
-    <p class="padding"><hr/></p>
+    <p class="padding">
+      <hr/>
+    </p>
   </ion-content>
 </ion-view>
 

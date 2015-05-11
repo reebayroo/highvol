@@ -66,12 +66,20 @@ describe('@ services/config-exercise-selection', function() {
 
 
 					var expectedListLength = lengthOfWorkoutTemplateWorkouts(workoutTemplateService.defaultTemplate);
-					var selectedSelection = _.filter(selection, function(item){return item.selected;});
+					var selectedSelection = _.filter(selection, function(item) {
+						return item.selected;
+					});
 					expect(selectedSelection.length).toEqual(expectedListLength);
 
 				});
 
+				it('keep state and not change  ...', function() {
+					var firstItem = exerciseSelectionService.selectableRoutinesList()[0];
+					firstItem.targetReps = 20;
+					firstItem.targetSets = 3;
+					expect(exerciseSelectionService.selectableRoutinesList()).toContain(firstItem);
 
+				});
 
 			});
 

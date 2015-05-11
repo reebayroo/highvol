@@ -27,12 +27,19 @@
 					wrapInSelection(routinesFromTemplate));
 		}
 	}
-
+	function routineListLazyLoader(caller){
+		return function(){ 
+				if (!this.routinesList){
+					this.routinesList= caller();
+				}
+				return this.routinesList;
+		};
+	}
 	var _module = angular.module('services.configExerciseSelection', ['services.workoutTemplate', 'services.exercise']);
 
 	_module.factory('exerciseSelectionService',  function(exerciseService, workoutTemplateService) {
 		return {
-			selectableRoutinesList: selectableRoutinesList(exerciseService, workoutTemplateService),
+			selectableRoutinesList: routineListLazyLoader(selectableRoutinesList(exerciseService, workoutTemplateService)),
 		};
 	});
 
