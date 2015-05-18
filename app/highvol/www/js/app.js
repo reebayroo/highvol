@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'configuration.controllers', 'workout.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'configuration.controllers', 'workout.controllers', 'exercise.controller'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,89 +21,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'configuration.contro
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-
-    .state('app', {
-      url: "/app",
-      abstract: true,
-      templateUrl: "templates/menu.html",
-      controller: 'AppCtrl'
-    })
-    .state('app.newWorkout', {
-      url: "/new-workout",
+  var route = function(state, url, templateLocation, controllerName) {
+    $stateProvider.state(state, {
+      url: url,
       views: {
-        'menuContent': {
-          templateUrl: "templates/new-workout.html",
-          controller: "WorkoutCtrl"
-
+        'menuContent': { //what is this???
+          templateUrl: templateLocation,
+          controller: controllerName
         }
       }
     })
+  };
 
-  .state('app.search', {
-    url: "/search",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/search.html"
-      }
-    }
-  })
+  route('app.newWorkout', "/new-workout", "templates/new-workout.html", "WorkoutCtrl");
+  route('app.setup', "/setup", "templates/setup.html", 'ConfigWorkoutCtrl');
+  route('app.setup2', "/setup/exercises", "templates/setup/exercises.html", 'ExerciseController');
+  // route('app.setup.exercises', "/setup-exercises", "templates/setup/exercises.html", 'ConfigWorkoutCtrl');
+  // route('app.search', "/search", "templates/search.html");
+  // route('app.browse', "/browse", "templates/browse.html");
+  // route('app.log', "/logs", "templates/logs.html", 'LogsCtrl');
+  route('app.config-workout', "/config-workout", "templates/config-workout.html", 'ConfigWorkoutCtrl');
 
-  .state('app.browse', {
-      url: "/browse",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/browse.html"
-        }
-      }
-    })
-    .state('app.log', {
-      url: "/logs",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/logs.html",
-          controller: 'LogsCtrl'
+  route('app.home', "/home", "templates/home.html", 'HomeCtrl');
+  route('app.workset', "/workset/:worksetId", "templates/workset.html", 'WorksetCtrl');
 
-        }
-      }
-    })
-    .state('app.config-workout', {
-      url: "/config-workout",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/config-workout.html",
-          controller: 'ConfigWorkoutCtrl'
-        }
-      }
-    })
-    .state('app.config-exercise', {
-      url: "/config-exercise",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/config-exercise.html",
-          controller: 'ConfigExerciseCtrl'
-        }
-      }
-    })    
-    .state('app.home', {
-      url: "/home",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/home.html",
-          controller: 'HomeCtrl'
-        }
-      }
-    })
-
-  .state('app.workset', {
-    url: "/workset/:worksetId",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/workset.html",
-        controller: 'WorksetCtrl'
-      }
-    }
+  $stateProvider.state('app', {
+    url: "/app",
+    abstract: true,
+    templateUrl: "templates/menu.html",
+    controller: 'AppCtrl'
   });
+
+
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
 });

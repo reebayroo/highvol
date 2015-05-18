@@ -118,7 +118,7 @@
 		return this.loadedList;
 	};
 
-	var _module = angular.module('services.exercise', []);
+	var _module = angular.module('exercise.service', []);
 
 	_module.factory('exerciseService', function() {
 		return {

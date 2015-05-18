@@ -72,7 +72,7 @@ gulp.task('watch-test', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
     singleRun: false,
-    logLevel: "debug",
+    logLevel: "info",
     browsers: ["PhantomJS"]
   }, done);
 });

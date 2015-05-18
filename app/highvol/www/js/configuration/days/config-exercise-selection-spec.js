@@ -1,22 +1,26 @@
 describe('@ services/config-exercise-selection', function() {
 	'use strict';
 
-	var mockWindow, mockModalSvc, sampleSvcObj;
-	beforeEach(module('services.configExerciseSelection', 'services.workoutTemplate', 'services.exercise'));
-
-	// instantiate service
-	var exerciseSelectionService,
-		exerciseService,
-		workoutTemplateService;
-	beforeEach(inject(function(_exerciseSelectionService_, _workoutTemplateService_, _exerciseService_) {
-		exerciseSelectionService = _exerciseSelectionService_;
-		exerciseService = _exerciseService_;
-		workoutTemplateService = _workoutTemplateService_;
-
-
-	}));
 
 	describe('The config exercise selection service', function() {
+
+
+		var mockWindow, mockModalSvc, sampleSvcObj;
+		beforeEach(module('services.configExerciseSelection', 'services.workoutTemplate', 'exercise.service'));
+
+
+		// instantiate service
+		var exerciseSelectionService,
+			exerciseService,
+			workoutTemplateService;
+		beforeEach(inject(function(_exerciseSelectionService_, _workoutTemplateService_, _exerciseService_) {
+			exerciseSelectionService = _exerciseSelectionService_;
+			exerciseService = _exerciseService_;
+			workoutTemplateService = _workoutTemplateService_;
+
+
+		}));
+
 		it('should be defined', function() {
 			expect(exerciseSelectionService).toBeDefined();
 		});

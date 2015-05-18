@@ -1,0 +1,49 @@
+<ion-view view-title="Setup Exercises">
+<ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button" ng-click="doSomething()">Left Button</button>
+  </div>
+  <h1 class="title">Title!</h1>
+  <div class="buttons">
+     <button class="button button-clear button-positive">Edit</button>
+  </div>
+</ion-header-bar>
+
+
+
+    <!--     <ion-nav-buttons side="right">
+    -->
+    <!--     <button class="button button-clear button-positive" ng-click="doSomething()">Sort</button>
+-->
+<!-- </ion-nav-buttons>
+-->
+<ion-content>
+
+    <div class="list">
+
+        <div class="item item-divider">
+
+        <label class="item item-input item-select">
+            <div class="input-label">Sort By</div>
+            <select>
+                <option>Name</option>
+                <option selected>Type</option>
+                <option>Muscle Target</option>
+            </select>
+        </label>
+
+        </div>
+
+        <ion-toggle ng-repeat="item in routines"
+                    ng-model="item.checked" 
+                    ng-checked="item.checked">{{ item.label }}</ion-toggle>
+    </div>
+
+    <ion-list>
+
+        <!--         <ion-toggle ng-model="routine.selected" ng-repeat-start="routine in routines"  toggle-class="toggle-calm">{{routine.label}}</ion-toggle>
+    -->
+</ion-list>
+
+</ion-content>
+</ion-view>

@@ -2,7 +2,7 @@ describe('@ services/wokout-templates', function() {
 	'use strict';
 
 	var mockWindow, mockModalSvc, sampleSvcObj;
-	beforeEach(module('services.workoutTemplate', 'services.exercise'));
+	beforeEach(module('services.workoutTemplate', 'exercise.service'));
 
 	// instantiate service
 	var workoutTemplateService,

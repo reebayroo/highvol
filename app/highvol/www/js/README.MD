@@ -21,17 +21,18 @@
 # The workout template service (services.workoutTemplate.workoutTemplateService)
 
 * provides a list of workouts templates with preselected exercises:
-* a workout template will have a range from A to G representing every day of the week.
+* a workout template will have a range of "DAYS" from 1 to 7 representing every day of the week.
 * will support the import and export of new templates like stronglifts and current
 
 * will start with a default
-* will provide a list of custom workouts. 
+* will provide a list of customized routines for every day.
+    * each routine will have a target rep and target set
 * Templates will be added along the new versions of the app
 * three templates: Dumbells Only, Power Rack (stronglifts) and Beginner
 * another template: [tnation-basic]
     
     
-# The configuration Exercise selection service (services.configExerciseSelection.exerciseSelectionService)
+# The configuration Exercise selection modules (configuration/exercises/ configExerciseSelection.exerciseSelectionService)
 - provides a list of sorted and grouped exercises that allow users to activate or deactivate an exercise used in the workouts
 
 - groups this list of exercises according to type, muscle group or equipment, always sorting secondly by name
@@ -66,3 +67,4 @@
 * will provide a  comparison against the previous set
 
 [tnation-basic]:https://www.t-nation.com/workouts/primer-4-big-bad-basic-workouts
+[cool-select]:http://codepen.io/mhartington/pen/CImqy
