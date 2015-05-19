@@ -118,9 +118,9 @@
 		return this.loadedList;
 	};
 
-	var _module = angular.module('exercise.service', []);
+	var _module = angular.module(EXERCISE.MODULE);
 
-	_module.factory('exerciseService', function() {
+	_module.factory(EXERCISE.SERVICE, function() {
 		return {
 			// listExercises: listExercises,
 			types: types,

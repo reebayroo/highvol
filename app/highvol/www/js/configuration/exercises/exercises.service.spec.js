@@ -4,7 +4,7 @@ describe('@ exercise.services', function() {
 	describe('The exercise service', function() {
 
 		// load the service's module
-		beforeEach(module('exercise.service'));
+		beforeEach(module(EXERCISE.MODULE));
 
 		// instantiate service
 		var exerciseService;
@@ -60,7 +60,7 @@ describe('@ exercise.services', function() {
 
 
 		var mockWindow, mockModalSvc, sampleSvcObj;
-		beforeEach(module('services.workoutTemplate', 'exercise.service'));
+		beforeEach(module('services.configExerciseSelection', 'services.workoutTemplate', EXERCISE.MODULE));
 
 
 		// instantiate service

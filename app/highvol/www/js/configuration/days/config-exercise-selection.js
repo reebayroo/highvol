@@ -35,7 +35,7 @@
 				return this.routinesList;
 		};
 	}
-	var _module = angular.module('services.configExerciseSelection', ['services.workoutTemplate', 'exercise.service']);
+	var _module = angular.module('services.configExerciseSelection', ['services.workoutTemplate', EXERCISE.MODULE]);
 
 	_module.factory('exerciseSelectionService',  function(exerciseService, workoutTemplateService) {
 		return {

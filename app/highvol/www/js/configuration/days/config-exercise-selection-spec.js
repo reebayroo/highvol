@@ -6,7 +6,7 @@ describe('@ services/config-exercise-selection', function() {
 
 
 		var mockWindow, mockModalSvc, sampleSvcObj;
-		beforeEach(module('services.configExerciseSelection', 'services.workoutTemplate', 'exercise.service'));
+		beforeEach(module('services.configExerciseSelection', 'services.workoutTemplate', EXERCISE.MODULE));
 
 
 		// instantiate service

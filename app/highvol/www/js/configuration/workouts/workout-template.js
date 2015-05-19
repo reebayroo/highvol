@@ -62,7 +62,7 @@
 		}, []);
 	}
 
-	var _module = angular.module('services.workoutTemplate', ['exercise.service']);
+	var _module = angular.module('services.workoutTemplate', [EXERCISE.MODULE]);
 	_module.factory('workoutTemplateService', function(exerciseService) {
 		return {
 			workouts: workouts,

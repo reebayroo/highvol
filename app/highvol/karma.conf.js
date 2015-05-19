@@ -19,6 +19,8 @@ module.exports = function(config) {
         'lib/angular-resource/angular-resource.js', 
         'lib/angular-mocks/angular-mocks.js', 
         'lib/lodash/lodash.js',
+        'js/globals.js',
+        'js/configuration/exercises/_module.js',
         'js/**/*.js'
     ],
 

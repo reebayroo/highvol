@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'configuration.controllers', 'workout.controllers', 'exercise.controller'])
+angular.module('starter', ['ionic', 'starter.controllers', 'configuration.controllers', 'workout.controllers', EXERCISE.MODULE])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -35,7 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'configuration.contro
 
   route('app.newWorkout', "/new-workout", "templates/new-workout.html", "WorkoutCtrl");
   route('app.setup', "/setup", "templates/setup.html", 'ConfigWorkoutCtrl');
-  route('app.setup2', "/setup/exercises", "templates/setup/exercises.html", 'ExerciseController');
+  route('app.setup2', "/setup/exercises", "templates/setup/exercises.html", EXERCISE.CONTROLLER);
   // route('app.setup.exercises', "/setup-exercises", "templates/setup/exercises.html", 'ConfigWorkoutCtrl');
   // route('app.search', "/search", "templates/search.html");
   // route('app.browse', "/browse", "templates/browse.html");
