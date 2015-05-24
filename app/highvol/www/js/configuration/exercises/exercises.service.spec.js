@@ -53,6 +53,24 @@ describe('@ exercise.services', function() {
 				expect(benchPress.equipment).toBeDefined();
 			});
 		});
+
+		describe('The search method', function() {
+			it('should be defined', function() {
+				expect(exerciseService.search).toBeDefined();
+			});
+			it('should find routines by name', function() {
+				expect(exerciseService.search("bench")).toContain(exerciseService.routines.benchPress);				
+			});
+			it('should find routines by muscle ', function() {
+				expect(exerciseService.search("shoulder")).toContain(exerciseService.routines.overheadPress);
+			});
+			it('should find routines by equipment ', function() {
+				expect(exerciseService.search("machine")).toContain(exerciseService.routines.stadingCalfRaise);
+			});			
+			it('should not bring routines that dont match in any of the criterias ', function() {
+				expect(exerciseService.search("glutes chinup").length).toEqual(0);
+			});			
+		});
 	});
 
 	describe('the config exercise selection service', function() {

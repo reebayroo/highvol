@@ -73,6 +73,7 @@
 						routineType: routineType,
 						equipment:equipment, 
 						targetMuscles : _.toArray(arguments),
+						muscleTags : _.map(_.toArray(arguments), function(muscle){ return muscle.label; }).join(","),
 						toString: function() {
 							return this.label;
 						}
@@ -93,7 +94,7 @@
 		inclineBenchPress: routine(equipments.Barbell, types.compound,"11f67231-7d99-4eb0-9f25-4ef9436e89ba", "Incline Bench Press")( 
 		 muscles.Chest),
 		overheadPress: routine(equipments.Barbell, types.compound,"24573dfb-ac3c-4390-bae9-d56137aa01c4", "Overhead Press")( 
-		 muscles.Chest),
+		 muscles.Shoulders, muscles.Chest),
 		pullUps: routine(equipments.Barbell, types.compound,"82ad8ea6-ab3c-4839-af22-a066eb0d46bd", "Pull-Ups")( 
 		 muscles.Chest),
 		squats: routine(equipments.Barbell, types.compound,"640f5b16-17de-4139-8a81-d62ba163ccf4", "Squats")( 
@@ -106,7 +107,7 @@
 		 muscles.Chest),
 		reverseGripEzCurl: routine(equipments.Barbell, types.isolation,"a14fa4c2-a6ed-49b1-bd0b-47f86c19c31b", "Reverse Grip Ez Bar Curl")( 
 		 muscles.Chest),
-		stadingCalfRaise: routine(equipments.Barbell, types.isolation,"37179b0c-f544-4105-b222-0994ba3859fe", "Standing Calf Raise")( 
+		stadingCalfRaise: routine(equipments.Machine, types.isolation,"37179b0c-f544-4105-b222-0994ba3859fe", "Standing Calf Raise")( 
 		 muscles.Chest)
 
 	};
@@ -118,6 +119,16 @@
 		return this.loadedList;
 	};
 
+	var search = function(searchText){
+		var re = new RegExp(searchText, "i");
+		var match = function(s){
+			return s.search(re) > -1;
+		}
+
+		return _.filter(routines, function(routine){return match(routine.label) || match(routine.equipment.label) || match(routine.muscleTags) });
+	};
+
+
 	var _module = angular.module(EXERCISE.MODULE);
 
 	_module.factory(EXERCISE.SERVICE, function() {
@@ -126,7 +137,8 @@
 			types: types,
 			routines: routines,
 			equipments: equipments,
-			muscles: muscles
+			muscles: muscles,
+			search: search
 		};
 	});
 
