@@ -5,3 +5,8 @@ var EXERCISE = {
 	SERVICE : "exerciseService", 
 	CONTROLLER : "exerciseController"
 };
+
+var SETUP_WORKOUT = {
+	MODULE : "setup.workout.module",
+	CONTROLLER : "SetupWorkoutController"
+}

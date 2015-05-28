@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'configuration.controllers', 'workout.controllers', EXERCISE.MODULE])
+angular.module('starter', ['ionic', 'starter.controllers', 'configuration.controllers', 'workout.controllers', EXERCISE.MODULE, SETUP_WORKOUT.MODULE])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,6 +23,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'configuration.contro
 .config(function($stateProvider, $urlRouterProvider) {
   var route = function(state, url, templateLocation, controllerName) {
     $stateProvider.state(state, {
+      parent: 'app', 
       url: url,
       views: {
         'menuContent': { //what is this???
@@ -33,17 +34,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'configuration.contro
     })
   };
 
-  route('app.newWorkout', "/new-workout", "templates/new-workout.html", "WorkoutCtrl");
-  route('app.setup', "/setup", "templates/setup.html", 'ConfigWorkoutCtrl');
-  route('app.setup2', "/setup/exercises", "templates/setup/exercises.html", EXERCISE.CONTROLLER);
+  route('newWorkout', "/new-workout", "templates/new-workout.html", "WorkoutCtrl");
+  route('setup', "/setup", "templates/setup.html", 'ConfigWorkoutCtrl');
+  route('setup2', "/setup/exercises", "templates/setup/exercises.html", EXERCISE.CONTROLLER);
+  route('setup-workouts', "/setup/workouts", "templates/setup/workouts.html", SETUP_WORKOUT.CONTROLLER);
+
   // route('app.setup.exercises', "/setup-exercises", "templates/setup/exercises.html", 'ConfigWorkoutCtrl');
   // route('app.search', "/search", "templates/search.html");
   // route('app.browse', "/browse", "templates/browse.html");
   // route('app.log', "/logs", "templates/logs.html", 'LogsCtrl');
-  route('app.config-workout', "/config-workout", "templates/config-workout.html", 'ConfigWorkoutCtrl');
+  route('config-workout', "/config-workout", "templates/config-workout.html", 'ConfigWorkoutCtrl');
 
-  route('app.home', "/home", "templates/home.html", 'HomeCtrl');
-  route('app.workset', "/workset/:worksetId", "templates/workset.html", 'WorksetCtrl');
+  route('home', "/home", "templates/home.html", 'HomeCtrl');
+  route('workset', "/workset/:worksetId", "templates/workset.html", 'WorksetCtrl');
 
   $stateProvider.state('app', {
     url: "/app",

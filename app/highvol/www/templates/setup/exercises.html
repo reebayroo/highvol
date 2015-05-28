@@ -34,9 +34,9 @@
 
         </div>
 
-        <ion-toggle ng-repeat="item in routines"
+        <ion-item ng-repeat="item in routines"
                     ng-model="item.checked" 
-                    ng-checked="item.checked">{{ item.label }}</ion-toggle>
+                  >{{ item.label }}</ion-item>
     </div>
 
     <ion-list>
