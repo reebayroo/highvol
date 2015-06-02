@@ -1,12 +1,12 @@
 (function() {
 	'use strict';
-	var module = angular.module('workout.controllers', ['services.workoutTemplate']);
-	module.controller('WorkoutCtrl', function($scope, workoutTemplateService) {
-		$scope.worksets = workoutTemplateService.workout;
+	var module = angular.module('workout.controllers', [PROGRAMS.MODULE]);
+	module.controller('WorkoutCtrl', function($scope, programsService) {
+		$scope.worksets = programsService.workout;
 	});
 
-	module.controller('WorksetCtrl', function($scope, $stateParams, workoutTemplateService) {
-		$scope.workset = workoutTemplateService.retrieveWorkset($stateParams.worksetId);
+	module.controller('WorksetCtrl', function($scope, $stateParams, programsService) {
+		$scope.workset = programsService.retrieveWorkset($stateParams.worksetId);
 	});
 
 })();

@@ -1,16 +1,16 @@
 
-var configuration = angular.module('configuration.controllers', [ 'services.workoutTemplate', 'services.configExerciseSelection']);
+var configuration = angular.module('configuration.controllers', [ PROGRAMS.MODULE, 'services.configExerciseSelection']);
 
 
-configuration.controller('ConfigExerciseCtrl', function($scope, workoutTemplateService, exerciseSelectionService) {
+configuration.controller('ConfigExerciseCtrl', function($scope, programsService, exerciseSelectionService) {
 	$scope.routines = exerciseSelectionService.selectableRoutinesList();
 	console.log($scope.routines);
   $scope.moveItem = function(){};
 });
 
 
-configuration.controller('ConfigWorkoutCtrl', function($scope, workoutTemplateService, exerciseSelectionService) {
-  $scope.configuration = workoutTemplateService.workouts;
+configuration.controller('ConfigWorkoutCtrl', function($scope, programsService, exerciseSelectionService) {
+  $scope.configuration = programsService.workouts;
   $scope.moveItem = function(){};
 });
 

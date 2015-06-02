@@ -18,18 +18,18 @@
     * id
  
 
-# The workout template service (services.workoutTemplate.workoutTemplateService)
+# The workout programs service (programs/programsService)
 
-* provides a list of workouts templates with preselected exercises:
-* a workout template will have a range of "DAYS" from 1 to 7 representing every day of the week.
-* will support the import and export of new templates like stronglifts and current
+* provides a list of workouts programss with preselected exercises:
+* a workout programs will have a range of "DAYS" from 1 to 7 representing every day of the week.
+* will support the import and export of new programss like stronglifts and current
 
 * will start with a default
 * will provide a list of customized routines for every day.
     * each routine will have a target rep and target set
 * Templates will be added along the new versions of the app
-* three templates: Dumbells Only, Power Rack (stronglifts) and Beginner
-* another template: [tnation-basic]
+* three programss: Dumbells Only, Stronglifts 5x5 and Beginner
+* another programs: [tnation-basic]
     
     
 # The configuration Exercise selection modules (configuration/exercises/ configExerciseSelection.exerciseSelectionService)

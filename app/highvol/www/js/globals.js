@@ -10,3 +10,8 @@ var SETUP_WORKOUT = {
 	MODULE : "setup.workout.module",
 	CONTROLLER : "SetupWorkoutController"
 }
+
+var PROGRAMS = {
+	MODULE : "services.programs", 
+	SERVICE : "programsService"
+}

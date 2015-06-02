@@ -1,7 +1,7 @@
 (function  (argument) {
 		'use strict';
 
-	var wrapInSelection = function(templateRoutines){
+	var buildSelection = function(templateRoutines){
 			var routineHash = _.reduce(templateRoutines, function(memo, item){
 				memo[item] = true;
 				return memo;
@@ -19,12 +19,12 @@
 	};
 
 
-	function selectableRoutinesList (exerciseService, workoutTemplateService) {
-		var defaultTemplate = workoutTemplateService.defaultTemplate;
-		var routinesFromTemplate = workoutTemplateService.extractRoutinesFromTemplate(defaultTemplate);
+	function selectableRoutinesList (exerciseService, programsService) {
+		var defaultProgram = programsService.defaultProgram;
+		var program = programsService.extractRoutinesFromTemplate(defaultProgram);
 		return function  () {
 				return _.map(exerciseService.routines, 
-					wrapInSelection(routinesFromTemplate));
+					buildSelection(program));
 		}
 	}
 	function routineListLazyLoader(caller){
@@ -35,11 +35,11 @@
 				return this.routinesList;
 		};
 	}
-	var _module = angular.module('services.configExerciseSelection', ['services.workoutTemplate', EXERCISE.MODULE]);
+	var _module = angular.module('services.configExerciseSelection', [PROGRAMS.MODULE, EXERCISE.MODULE]);
 
-	_module.factory('exerciseSelectionService',  function(exerciseService, workoutTemplateService) {
+	_module.factory('exerciseSelectionService',  function(exerciseService, programsService) {
 		return {
-			selectableRoutinesList: routineListLazyLoader(selectableRoutinesList(exerciseService, workoutTemplateService)),
+			selectableRoutinesList: routineListLazyLoader(selectableRoutinesList(exerciseService, programsService)),
 		};
 	});
 
