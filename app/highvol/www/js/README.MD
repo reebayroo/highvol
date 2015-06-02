@@ -1,13 +1,13 @@
-#The exercise service (services.exercise.exerciseService)
+#The exercise service (configuration/exercises/exercises.service.js)
 
 - Provides the list of all exercises
 - the types are:  
 
->    Compound, Isolation and N/A
+    >    Compound, Isolation and N/A
 
 - the muscle groups are: 
 
-   > Abdominals, Abductors, Adductors, Biceps, Calves, Chest, Forearms, Glutes, Hamstrings , Lats , Lower Back , Middle Back, Neck, Quadriceps, Shoulders, Traps, Triceps
+    > Abdominals, Abductors, Adductors, Biceps, Calves, Chest, Forearms, Glutes, Hamstrings , Lats , Lower Back , Middle Back, Neck, Quadriceps, Shoulders, Traps, Triceps
 
 - the equipments are:
     > Bands , Foam Roll, Barbell , Kettlebells, Body Only , Machine, Cable , Medicine Ball, Dumbbell , None, E-Z Curl Bar , Exercise Ball, Other
@@ -18,19 +18,22 @@
     * id
  
 
-# The workout programs service (programs/programsService)
+# The workout programs service (cnofiguration/programs/programs.js)
 
-* provides a list of workouts programss with preselected exercises:
+* provides a list of workouts programs with preselected exercises:
 * a workout programs will have a range of "DAYS" from 1 to 7 representing every day of the week.
-* will support the import and export of new programss like stronglifts and current
+
+* can be imported and shared from between users
 
 * will start with a default
+
 * will provide a list of customized routines for every day.
     * each routine will have a target rep and target set
 * Templates will be added along the new versions of the app
 * three programss: Dumbells Only, Stronglifts 5x5 and Beginner
 * another programs: [tnation-basic]
-    
+* user can browser through the programs and activate the ones he wants to use. 
+
     
 # The configuration Exercise selection modules (configuration/exercises/ configExerciseSelection.exerciseSelectionService)
 - provides a list of sorted and grouped exercises that allow users to activate or deactivate an exercise used in the workouts

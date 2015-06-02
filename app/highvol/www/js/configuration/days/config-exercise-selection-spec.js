@@ -91,6 +91,17 @@ xdescribe('@ services/config-exercise-selection', function() {
 		});
 	});
 
+//moved from programsService, no business over there
+	describe('Should have a extractRoutinesFromTemplate method', function() {
+		it('that flattens all routines from a given template ', function() {
+
+				var expected = [routines.benchPress, routines.bentOverRoll, routines.squats, routines.chinUps, routines.pullUps, routines.reverseGripEzCurl, routines.deadLifts, routines.overheadPress, routines.dips, routines.barbellCurls];
+
+				expect(programsService.extractRoutinesFromTemplate(programsService.defaultProgram).length)
+					.toEqual( expected.length);
+		});
+		
+	});
 
 
 }); //EOF

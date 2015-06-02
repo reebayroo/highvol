@@ -18,10 +18,15 @@
 
 	};
 
+	var extractRoutinesFromTemplate = function(template){
+		return _.reduce(Object.keys(template), function(memo, weekday){
+			return memo.concat(_.toArray(template[weekday]));
+		}, []);
+	}
 
 	function selectableRoutinesList (exerciseService, programsService) {
 		var defaultProgram = programsService.defaultProgram;
-		var program = programsService.extractRoutinesFromTemplate(defaultProgram);
+		var program = extractRoutinesFromTemplate(defaultProgram);
 		return function  () {
 				return _.map(exerciseService.routines, 
 					buildSelection(program));

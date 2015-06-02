@@ -28,7 +28,7 @@
 	};
 
 
-	var buildTemplate = function() {
+	var programBuilder = function() {
 		return new function() {
 			var _value = {};
 
@@ -36,6 +36,10 @@
 				_value[key] = _.rest(arguments);
 				return this;
 			};
+			this.name = function(value){
+				_value.name = value;
+				return this;
+			}
 			this.value = function() {
 				return _value;
 			}
@@ -46,7 +50,7 @@
 			return { routine: routine, targetSets: 3, targetReps: 12 };
 		}
 
-		return buildTemplate()
+		return programBuilder()
 			.put(workouts.day1, program(routines.benchPress), program(routines.bentOverRoll))
 			.put(workouts.day2, program(routines.squats), program(routines.chinUps))
 			.put(workouts.day3, program(routines.pullUps), program(routines.reverseGripEzCurl))
@@ -54,23 +58,41 @@
 			.put(workouts.day5, program(routines.dips), program(routines.barbellCurls))
 			.put(workouts.day6)
 			.put(workouts.day7)
+			.name("default")
 			.value();
 
 
 	}
 
-	var extractRoutinesFromTemplate = function(template){
-		return _.reduce(Object.keys(template), function(memo, weekday){
-			return memo.concat(_.toArray(template[weekday]));
-		}, []);
-	}
+	var buildFiveByFive = function(routines){
+		function program(routine){
+			return { routine: routine, targetSets: 5, targetReps: 5 };
+		}		
+		return programBuilder()
+			.put(workouts.day1, program(routines.squats), program(routines.benchPress), program(routines.bentOverRoll))
+			.put(workouts.day2, program(routines.squats), program(routines.overheadPress), program(routines.deadLifts))
+			.put(workouts.day3)
+			.put(workouts.day4) 
+			.put(workouts.day5)
+			.put(workouts.day6)
+			.put(workouts.day7)
+			.name("5 x 5")
+			.value();
 
+
+	};
+
+	var buildAdditionalPrograms = function(routines){
+		return [
+			buildFiveByFive(routines)
+		];
+	};
 	var _module = angular.module('services.programs', [EXERCISE.MODULE]);
 	_module.factory('programsService', function(exerciseService) {
 		return {
 			workouts: workouts,
 			defaultProgram: defaultProgram(exerciseService.routines),
-			extractRoutinesFromTemplate: extractRoutinesFromTemplate
+			programs: buildAdditionalPrograms(exerciseService.routines)
 		};
 
 	}); //_module.factory
