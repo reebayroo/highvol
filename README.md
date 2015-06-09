@@ -1,5 +1,8 @@
 # Highvol 
 
+[![Circle CI](https://circleci.com/gh/robertfmurdock/Farseer.png?style=badge)](https://circleci.com/gh/robertfmurdock/Farseer)
+
+
 A High Volume Workout is a sequence of many sets and repetitions with lighter weights. 
 In contrast to StrongLifts that focus on five sets of five repetitions, High Volume workout will have one doing ten sets with fifteen repetitions to failures. Additional sets or 5lbs are added over time.   
 
