@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - '0.10'
+  - '0.11'
+before_script:
+  - cd app/highvol/
+  - npm install -g bower gulp-cli
+  - bower install
+script: gulp test
