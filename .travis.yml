@@ -7,4 +7,4 @@ before_script:
   - npm install -g bower
   - bower install
   - npm install -g gulp
-script: cd app/highvol  && gulp test
+script: gulp test
