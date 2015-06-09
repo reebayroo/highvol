@@ -5,6 +5,11 @@ node_js:
 before_script:
   - cd app/highvol/
   - npm install -g bower
+  - ls
   - bower install
+  - ls
   - npm install -g gulp
+  - pwd
+  - ls
+
 script: gulp test
